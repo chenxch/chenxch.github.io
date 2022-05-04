@@ -11,7 +11,7 @@
     <header class="sticky">
       <div class="container">
         <div class="nav-brand"><a href="https://github.com/chenxch">
-            <h1><i class="nes-pokeball"></i> Xc</h1>
+            <h1><i class="nes-ash"></i> Xc</h1>
           </a>
           <p>A rookie front end.</p>
         </div>
@@ -48,7 +48,7 @@
                     <div class="nes-balloon from-right">
                       <p>You are welcome.</p>
                     </div>
-                    <i class="nes-bcrikko"></i>
+                    <i class="xc-logo"></i>
                   </section>
 
                   <section class="message -left">
@@ -74,7 +74,7 @@
                           href="https://github.com/element-plus/element-plus">element-plus</a>.
                       </p>
                     </div>
-                    <i class="nes-bcrikko"></i>
+                    <i class="xc-logo"></i>
                   </section>
                 </section>
               </section>
@@ -113,10 +113,17 @@
           </p>
         </section>
         <!-- <progress id="progress" class="nes-progress is-success" value="0" max="100"></progress> -->
-        <div id="game" />
-        <div>
-          <button type="button" class="nes-btn is-primary" onclick="resume()">resume</button>
+        <div id="game">
+          <div id="start" class="game">
+            <div>Flappy Brid</div>
+            <div class="brid"></div>
+            <button type="button" class="nes-btn is-primary" onclick="start()">start</button>
+          </div>
         </div>
+        <!-- <div>
+          <button type="button" class="nes-btn is-primary" onclick="start()">start</button>
+          <button type="button" class="nes-btn is-primary" onclick="resume()">resume</button>
+        </div> -->
       </main>
     </div>
   </div>
@@ -130,6 +137,44 @@
   </style>
   <script src="https://cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.js"></script>
   <script src="./script.js"></script>
+  <style>
+    .game {
+      height: 512px;
+      width: 288px;
+      background-image: url('./assets/background.png');
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .brid {
+      width: 30px;
+      height: 30px;
+      background-image: url('./assets/birds.png');
+    }
+
+    .xc-logo {
+      position: relative;
+      display: inline-block;
+      width: 96px;
+      height: 96px;
+    }
+
+    .xc-logo::before {
+      position: absolute;
+      top: -6px;
+      left: -6px;
+      content: "";
+      background: 0 0;
+      width: 96px;
+      height: 96px;
+      content: "";
+      background-image: url('./assets/xc.png');
+      background-size: cover;
+    }
+
+  </style>
 </body>
 
 </html>

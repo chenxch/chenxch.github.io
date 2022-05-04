@@ -4,6 +4,7 @@ var cursors
 var scoreText
 var score = 0
 var gameOver = false
+var pointer
 
 const config = {
   type: Phaser.AUTO,
@@ -23,7 +24,7 @@ const config = {
     update
   }
 }
-var game = new Phaser.Game(config)
+var game
 // 资源预加载
 function preload() {
   this.load.image('sky', './assets/background.png')
@@ -68,6 +69,7 @@ function create() {
 
   //  键盘事件
   cursors = this.input.keyboard.createCursorKeys()
+  pointer = this.input.activePointer
 
   //  成绩文本
   scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' })
@@ -95,7 +97,7 @@ function create() {
 function update() {
   if (gameOver) return
 
-  if (cursors.space.isDown) {
+  if (cursors.space.isDown || pointer.isDown) {
     player.setVelocityY(-300)
 
     player.anims.play('fly', true)
@@ -137,5 +139,16 @@ function generationPipe() {
 }
 
 function resume() {
-  game.onResume()
+  gameOver = false
+  game.player.anims.play('fly', true)
+  game.physics.resume()
+}
+
+function start() {
+  if (!game) {
+    document.querySelector('#start').style.display = 'none'
+    game = new Phaser.Game(config)
+  } else {
+    game.restart()
+  }
 }
