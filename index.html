@@ -3,50 +3,133 @@
 <head>
   <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
   <link href="https://unpkg.com/nes.css@latest/css/nes.min.css" rel="stylesheet" />
+  <link href="https://nostalgic-css.github.io/NES.css/style.css" rel="stylesheet" />
 </head>
 
 <body style="margin:20px">
-  <header>
-    <h1>Xc</h1>
-  </header>
-  <div class="container">
-    <main class="main-content">
-      <section class="topic">
-        <h2>
-          <a href="#about">#</a>
-          About
-        </h2>
-        <p>
-          Hey, I'm xc, a fake full stack front-end developer. Because I felt that there was something left in my
-          programming career, I started to play github. I like <a href="https://vuejs.org/">Vue</a>, adore <a
-            href="https://github.com/antfu">antfu</a>,
-          and like to answer questions in
-          various project issues, because I think this is a win-win behavior for learning and helping others. I am
-          currently fortunate to participate in the maintenance of <a
-            href="https://github.com/element-plus/element-plus">element-plus</a>.
-        </p>
-      </section>
-      <section>
-        <h2>
-          <a href="#projects">#</a>
-          Projects
-        </h2>
-        <p>
-          I have a few projects that I'm working on.
-        </p>
-        <ul>
-          <li>
-            <a href="https://github.com/chenxch/vite-plugin-dynamic-base">vite-plugin-dynamic-base</a>
-            <p>Recorded in awesome-vite.</p>
-          </li>
-          <li>
-            <a href=" https://github.com/chenxch/demi-axios">demi-axios</a>
-            <p>vue2/vue3 axios hooks.</p>
-          </li>
-      </section>
-    </main>
-  </div>
+  <div id="nescss">
+    <header class="sticky">
+      <div class="container">
+        <div class="nav-brand"><a href="https://github.com/chenxch">
+            <h1><i class="nes-pokeball"></i> Xc</h1>
+          </a>
+          <p>A rookie front end.</p>
+        </div>
+        <div class="social-buttons">
+          <p>Share on SNS</p>
+          <div class="share">
+            <a href="https://github.com/chenxch" target="_blank"><i class="nes-icon github"></i></a>
+            <a href="https://twitter.com/124118265" target="_blank"><i class="nes-icon twitter"></i></a>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="container">
+      <a href="https://github.com/chenxch" target="_blank" rel="noopener" class="github-link active">
+        <p class="nes-balloon from-right">Follow me<br>on GitHub</p> <i class="nes-octocat"></i>
+      </a>
+      <main class="main-content">
+        <section class="showcase">
+          <section class="nes-container with-title">
+            <h3 class="title">About Xc</h3>
+            <div id="balloons" class="item">
+              <section class="nes-container">
+                <section class="message-list">
+                  <section class="message -left">
+                    <i class="nes-bcrikko"></i>
+                    <!-- Balloon -->
+                    <div class="nes-balloon from-left">
+                      <p>Hello Xc</p>
+                    </div>
+                  </section>
 
+                  <section class="message -right">
+                    <!-- Balloon -->
+                    <div class="nes-balloon from-right">
+                      <p>You are welcome.</p>
+                    </div>
+                    <i class="nes-bcrikko"></i>
+                  </section>
+
+                  <section class="message -left">
+                    <i class="nes-bcrikko"></i>
+                    <!-- Balloon -->
+                    <div class="nes-balloon from-left">
+                      <p>Could you please introduce yourself.</p>
+                    </div>
+                  </section>
+
+                  <section class="message -right">
+                    <!-- Balloon -->
+                    <div class="nes-balloon from-right">
+                      <p>Hey, I'm Xc, a fake full stack front-end developer. Because I felt that there was something
+                        left
+                        in my
+                        programming career, I started to play github. I like <a href="https://vuejs.org/">Vue</a>, adore
+                        <a href="https://github.com/antfu">antfu</a>,
+                        and like to answer questions in
+                        various project issues, because I think this is a win-win behavior for learning and helping
+                        others. I am
+                        currently fortunate to participate in the maintenance of <a
+                          href="https://github.com/element-plus/element-plus">element-plus</a>.
+                      </p>
+                    </div>
+                    <i class="nes-bcrikko"></i>
+                  </section>
+                </section>
+              </section>
+            </div>
+          </section>
+        </section>
+        <section style="margin-top: 20px">
+          <h2>
+            <a href="#projects">#</a>
+            Projects
+          </h2>
+          <p>
+            I have a few projects that I'm working on.
+          </p>
+          <ul>
+            <li>
+              <a href="https://github.com/chenxch/vite-plugin-dynamic-base">vite-plugin-dynamic-base</a>
+              <p>Recorded in awesome-vite.</p>
+            </li>
+            <li>
+              <a href=" https://github.com/chenxch/demi-axios">demi-axios</a>
+              <p>vue2/vue3 axios hooks.</p>
+            </li>
+          </ul>
+        </section>
+        <section style="margin-top: 20px">
+          <h2>
+            <a href="#game">#</a>
+            Game
+          </h2>
+          <p>
+            <i class="snes-jp-logo"></i>
+            <select required id="default_select">
+              <option value="0">Flappy Brid</option>
+            </select>
+          </p>
+        </section>
+        <!-- <progress id="progress" class="nes-progress is-success" value="0" max="100"></progress> -->
+        <div id="game" />
+        <div>
+          <button type="button" class="nes-btn is-primary" onclick="resume()">resume</button>
+        </div>
+      </main>
+    </div>
+  </div>
+  <style>
+    #nescss>.container {
+      max-width: 980px;
+      margin: 0 auto;
+      margin-top: 150px;
+    }
+
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.js"></script>
+  <script src="./script.js"></script>
 </body>
 
 </html>
