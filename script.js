@@ -145,9 +145,12 @@ function resume() {
 
 function start() {
   if (!game && Phaser) {
-    document.querySelector('#start').style.display = 'none'
-    document.querySelector('body').scrollTo(0,999999)
+    
     game = new Phaser.Game(config)
+    document.querySelector('#start').style.display = 'none'
+    setTimeout(()=>{
+      document.querySelector('body').scrollTo(0,999999)
+    },200)
     // setInterval(()=>{
     //   loading()
     // }, 200)
