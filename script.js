@@ -146,7 +146,7 @@ function resume() {
 }
 
 function start() {
-  if (!game) {
+  if (!game && Phaser) {
     document.querySelector('#start').style.display = 'none'
     game = new Phaser.Game(config)
     // setInterval(()=>{
