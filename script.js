@@ -27,10 +27,10 @@ const config = {
 var game
 // 资源预加载
 function preload() {
-  this.load.image('sky', './assets/background.png')
-  this.load.image('pipetop', './assets/pipetop.png')
-  this.load.image('pipebottom', './assets/pipebottom.png')
-  this.load.spritesheet('bird', './assets/birds.png', { frameWidth: 30, frameHeight: 30 })
+  this.load.image('sky', 'https://raw.githubusercontent.com/chenxch/pic-image/master/20220504/background.1k1qnv5xax8g.png')
+  this.load.image('pipetop', 'https://raw.githubusercontent.com/chenxch/pic-image/master/20220504/pipetop.6kjyyhp31wg0.png')
+  this.load.image('pipebottom', 'https://raw.githubusercontent.com/chenxch/pic-image/master/20220504/pipebottom.5krrldf5jog0.png')
+  this.load.spritesheet('bird', 'https://raw.githubusercontent.com/chenxch/pic-image/master/20220504/birds.22sbfio9ib4w.png', { frameWidth: 30, frameHeight: 30 })
 }
 
 function create() {
