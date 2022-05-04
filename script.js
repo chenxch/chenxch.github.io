@@ -4,9 +4,6 @@ var cursors
 var scoreText
 var score = 0
 var gameOver = false
-var pointer
-var physics 
-var ts = +new Date()
 
 const config = {
   type: Phaser.AUTO,
@@ -26,18 +23,7 @@ const config = {
     update
   }
 }
-var game = new Phaser.Game(config)
-
-function scoreLoop() {
-  if (gameOver) return
-  const nts = +new Date()
-  if (nts - ts > 1000) {
-    ts = nts
-    score += 1
-    scoreText.setText(`score: ${score}`)
-  }
-  window.requestAnimationFrame(scoreLoop)
-}
+var game
 // 资源预加载
 function preload() {
   this.load.image('sky', 'https://cdn.jsdelivr.net/gh/chenxch/pic-image@master/20220504/background.1k1qnv5xax8g.png')
@@ -47,7 +33,6 @@ function preload() {
 }
 
 function create() {
-  physics = this.physics
   // 设置背景居中
   this.add.image(144, 256, 'sky')
   // 创建管道组对象
@@ -92,17 +77,26 @@ function create() {
   this.physics.add.collider(player, pipe, hitPipe, undefined, this)
 
   // 使用requestAnimationFrame构建定时器
+  let ts = +new Date()
+  const scoreLoop = () => {
+    if (gameOver) return
+    const nts = +new Date()
+    if (nts - ts > 1000) {
+      ts = nts
+      score += 1
+      scoreText.setText(`score: ${score}`)
+    }
+    window.requestAnimationFrame(scoreLoop)
+  }
   
-
   // document.querySelector('#start').style.display = 'none'
-  this.physics.pause()
-  gameOver = true
+  // 开始计时
+  scoreLoop()
 }
 
 function update() {
   if (gameOver) return
-
-  if (cursors.space.isDown || pointer.isDown) {
+  if (cursors.space.isDown || this.input.activePointer.isDown) {
     player.setVelocityY(-300)
 
     player.anims.play('fly', true)
@@ -144,23 +138,19 @@ function generationPipe() {
 }
 
 function resume() {
-  game.destroy()
+  gameOver = false
+  game.player.anims.play('fly', true)
+  game.physics.resume()
 }
 
 function start() {
-  if (game && Phaser) {
-    document.querySelector('#game').style.display = 'block'
+  if (!game && Phaser) {
     document.querySelector('#start').style.display = 'none'
-    gameOver = false
-    physics.resume()
-    ts = +new Date()
-    // 开始计时
-    scoreLoop()
+    game = new Phaser.Game(config)
     // setInterval(()=>{
     //   loading()
     // }, 200)
   } else {
-    game.restart()
   }
 }
 
