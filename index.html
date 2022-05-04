@@ -122,11 +122,11 @@
             <button type="button" class="nes-btn is-primary" onclick="start()">start</button>
             <!-- <progress id="progress" class="nes-progress is-success" value="0" max="100"></progress> -->
           </div>
+          <div id="restart" class="restart">
+            <h2 style="color:#fff">Game Over</h2>
+            <button type="button" class="nes-btn is-primary" onclick="resume()">resume</button>
+          </div>
         </div>
-        <!-- <div>
-          <button type="button" class="nes-btn is-primary" onclick="start()">start</button>
-          <button type="button" class="nes-btn is-primary" onclick="resume()">resume</button>
-        </div> -->
       </main>
     </div>
     <footer>
@@ -197,6 +197,17 @@
       justify-content: center;
       padding-bottom: 30px;
       cursor: pointer;
+    }
+
+    .restart {
+      display: none;
+      width: 288px;
+      height: 512px;
+      position: absolute;
+      justify-content: center;
+      align-items: center;
+      background-color: rgba(0, 0, 0, .5);
+      flex-direction: column;
     }
 
   </style>

@@ -110,6 +110,7 @@ function hitPipe(player, pipe) {
   this.physics.pause()
   player.anims.play('stop')
   gameOver = true
+  document.querySelector('#restart').style.display = 'flex'
 }
 
 function generationPipe() {
@@ -138,9 +139,11 @@ function generationPipe() {
 }
 
 function resume() {
+  game.destroy(true)
   gameOver = false
-  game.player.anims.play('fly', true)
-  game.physics.resume()
+  score=0
+  game = new Phaser.Game(config)
+  document.querySelector('#restart').style.display = 'none'
 }
 
 function start() {
