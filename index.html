@@ -113,11 +113,12 @@
           </p>
         </section>
         <!-- <progress id="progress" class="nes-progress is-success" value="0" max="100"></progress> -->
-        <div id="game">
+        <div id="game" class="center">
           <div id="start" class="game">
             <div>Flappy Brid</div>
             <div class="brid"></div>
             <button type="button" class="nes-btn is-primary" onclick="start()">start</button>
+            <!-- <progress id="progress" class="nes-progress is-success" value="0" max="100"></progress> -->
           </div>
         </div>
         <!-- <div>
@@ -172,6 +173,11 @@
       content: "";
       background-image: url('https://cdn.jsdelivr.net/gh/chenxch/pic-image@master/20220504/xc.42x3ww3iolu0.png');
       background-size: cover;
+    }
+
+    .center {
+      display: flex;
+      justify-content: center;
     }
 
   </style>

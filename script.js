@@ -89,7 +89,8 @@ function create() {
     }
     window.requestAnimationFrame(scoreLoop)
   }
-
+  
+  // document.querySelector('#start').style.display = 'none'
   // 开始计时
   scoreLoop()
 }
@@ -148,7 +149,18 @@ function start() {
   if (!game) {
     document.querySelector('#start').style.display = 'none'
     game = new Phaser.Game(config)
+    // setInterval(()=>{
+    //   loading()
+    // }, 200)
   } else {
     game.restart()
+  }
+}
+
+function loading() {
+  document.querySelector('#progress').value+=20
+  if(document.querySelector('#progress').value===100){
+    clearInterval(loading)
+    document.querySelector('#start').style.display = 'none'
   }
 }
