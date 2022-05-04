@@ -5,6 +5,8 @@ var scoreText
 var score = 0
 var gameOver = false
 var pointer
+var physics 
+var ts = +new Date()
 
 const config = {
   type: Phaser.AUTO,
@@ -24,7 +26,18 @@ const config = {
     update
   }
 }
-var game
+var game = new Phaser.Game(config)
+
+function scoreLoop() {
+  if (gameOver) return
+  const nts = +new Date()
+  if (nts - ts > 1000) {
+    ts = nts
+    score += 1
+    scoreText.setText(`score: ${score}`)
+  }
+  window.requestAnimationFrame(scoreLoop)
+}
 // 资源预加载
 function preload() {
   this.load.image('sky', 'https://cdn.jsdelivr.net/gh/chenxch/pic-image@master/20220504/background.1k1qnv5xax8g.png')
@@ -34,6 +47,7 @@ function preload() {
 }
 
 function create() {
+  physics = this.physics
   // 设置背景居中
   this.add.image(144, 256, 'sky')
   // 创建管道组对象
@@ -78,21 +92,11 @@ function create() {
   this.physics.add.collider(player, pipe, hitPipe, undefined, this)
 
   // 使用requestAnimationFrame构建定时器
-  let ts = +new Date()
-  const scoreLoop = () => {
-    if (gameOver) return
-    const nts = +new Date()
-    if (nts - ts > 1000) {
-      ts = nts
-      score += 1
-      scoreText.setText(`score: ${score}`)
-    }
-    window.requestAnimationFrame(scoreLoop)
-  }
   
+
   // document.querySelector('#start').style.display = 'none'
-  // 开始计时
-  scoreLoop()
+  this.physics.pause()
+  gameOver = true
 }
 
 function update() {
@@ -140,15 +144,18 @@ function generationPipe() {
 }
 
 function resume() {
-  gameOver = false
-  game.player.anims.play('fly', true)
-  game.physics.resume()
+  game.destroy()
 }
 
 function start() {
-  if (!game && Phaser) {
+  if (game && Phaser) {
+    document.querySelector('#game').style.display = 'block'
     document.querySelector('#start').style.display = 'none'
-    game = new Phaser.Game(config)
+    gameOver = false
+    physics.resume()
+    ts = +new Date()
+    // 开始计时
+    scoreLoop()
     // setInterval(()=>{
     //   loading()
     // }, 200)
